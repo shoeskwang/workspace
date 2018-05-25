@@ -2,6 +2,14 @@ package com.kwang.forecastCourse.model.dto;
 
 import java.util.Date;
 
+/*
+ *   rno : 댓글 번호
+     bno : 게시글 번호
+     replytext : 댓글 내용
+     replyer : 댓글 작성자
+     regdate : 댓글 작성일자
+     writer : 게시글의 작성자 추가
+ * */
 public class BoardReplyVO {
 	private Integer rno;        // 댓글 번호
     private Integer bno;        // 게시글 번호

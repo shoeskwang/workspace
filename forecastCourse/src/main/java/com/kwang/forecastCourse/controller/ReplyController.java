@@ -26,6 +26,7 @@ public class ReplyController {
 	@RequestMapping("insert.do")
 	@ResponseBody
 	public HashMap<String, String> insert(@ModelAttribute ReplyVO vo, HttpSession session){
+		//댓글 등록
 		String userId = (String) session.getAttribute("userId");
 		vo.setReplyer(userId);
 		replyService.create(vo);
@@ -42,6 +43,7 @@ public class ReplyController {
 	@RequestMapping("delete.do")
 	@ResponseBody
 	public HashMap<String, String> delete(@ModelAttribute ReplyVO vo, HttpSession session){
+		//댓글 삭제
 		//String userId = (String) session.getAttribute("userId");
 		System.out.println("ReplyController delete() grno = " + vo.getGrno());
 		//vo.setReplyer(userId);
@@ -61,8 +63,7 @@ public class ReplyController {
 							@RequestParam(defaultValue="1") int curPage,
 							ModelAndView mav,
 							HttpSession session){
-		
-		//System.out.println("              ReplyController list() bno : " + bno);
+		// 경로 댓글 리스트 처리
 		
 		// ** 페이징처리
 		int count = replyService.count(gno);

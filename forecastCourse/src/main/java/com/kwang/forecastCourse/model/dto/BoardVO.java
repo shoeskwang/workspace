@@ -2,6 +2,17 @@ package com.kwang.forecastCourse.model.dto;
 
 import java.util.Date;
 
+/*
+ *  bno : 게시글 번호
+	gno : 참조 경로 번호
+    title : 게시글 제목
+    content : 게시글 내용
+    writer : 게시글 작성자
+    regdate : 게시글 작성일자
+    viewcnt : 게시글 조회수
+    userName : 게시글 회원이름게시글 작성자
+    recnt : 게시글의 댓글의 수
+ * */
 public class BoardVO {
 	private int bno;            // 게시글 번호
 	private int gno;

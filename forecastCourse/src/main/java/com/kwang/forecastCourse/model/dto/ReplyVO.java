@@ -2,6 +2,14 @@ package com.kwang.forecastCourse.model.dto;
 
 import java.util.Date;
 
+/*
+ *   grno : 댓글 번호
+     gno : 코스 번호
+     replytext : 댓글 내용
+     replyer : 댓글 작성자
+     regdate : 댓글 작성일자
+     writer : 코스 작성자 추가
+ * */
 public class ReplyVO {
 	private Integer grno;        // 댓글 번호
     private Integer gno;        // 코스 번호

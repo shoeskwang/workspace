@@ -2,6 +2,14 @@ package com.kwang.forecastCourse.model.dto;
 
 import java.util.Date;
 
+/*
+ * 	id :  사용자 아이디
+ * 	pw :  사용자 패스워드
+ *  name : 사용자 이름
+ *  email : 사용자 이메일
+ *  regdate : 회원가입 일자
+ *  phone : 사용자 전화번호
+ * */
 public class MemberVO {
 	private String id;
 	private String pw;

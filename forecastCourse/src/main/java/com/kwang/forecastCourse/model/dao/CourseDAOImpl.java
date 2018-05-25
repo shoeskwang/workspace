@@ -19,22 +19,18 @@ public class CourseDAOImpl implements CourseDAO {
 	
 	@Override
 	public GeoVO view(int gno) throws Exception {
-		// TODO Auto-generated method stub
 		return SqlSession.selectOne("course.view", gno);
 	}
 
 	@Override
 	public void insert(GeoVO vo) throws Exception {
-		// TODO Auto-generated method stub
 		SqlSession.insert("course.insert",vo);
 	}
 
 	@Override
 	public List<GeoVO> listAll(int start, int end, String searchOption, String keyword) throws Exception {
-		// TODO Auto-generated method stub
-		
 		Map<String,Object> map = new HashMap<String, Object>();
-		
+		// paging 처리
 		map.put("start", start);
 		map.put("end", end);
 		map.put("searchOption", searchOption);
@@ -45,25 +41,21 @@ public class CourseDAOImpl implements CourseDAO {
 
 	@Override
 	public void update(GeoVO vo) throws Exception {
-		// TODO Auto-generated method stub
-		
+		// 미구현
 	}
 
 	@Override
 	public void delete(int gno) throws Exception {
-		// TODO Auto-generated method stub
 		SqlSession.delete("course.deleteArticle",gno);
 	}
 
 	@Override
 	public void increaseViewcnt(int gno) throws Exception {
-		// TODO Auto-generated method stub
 		SqlSession.update("course.increaseViewcnt", gno);
 	}
 
 	@Override
 	public int countArticle() throws Exception {
-		// TODO Auto-generated method stub
 		return SqlSession.selectOne("course.countArticle", null);
 	}
 

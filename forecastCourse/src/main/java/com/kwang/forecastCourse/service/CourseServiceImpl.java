@@ -16,37 +16,31 @@ public class CourseServiceImpl implements CourseService {
 	CourseDAO CourseDao;
 	@Override
 	public GeoVO view(int gno) throws Exception {
-		// TODO Auto-generated method stub
 		return CourseDao.view(gno);
 	}
 
 	@Override
 	public void insert(GeoVO vo) throws Exception {
-		// TODO Auto-generated method stub
 		CourseDao.insert(vo);
 	}
 
 	@Override
 	public List<GeoVO> listAll(int start, int end, String searchOption, String keyword) throws Exception {
-		// TODO Auto-generated method stub
 		return CourseDao.listAll(start, end, searchOption, keyword);
 	}
 
 	@Override
 	public void update(GeoVO vo) throws Exception {
-		// TODO Auto-generated method stub
 		CourseDao.update(vo);
 	}
 
 	@Override
 	public void delete(int gno) throws Exception {
-		// TODO Auto-generated method stub
 		CourseDao.delete(gno);
 	}
 
 	@Override
 	public void increaseViewcnt(int gno, HttpSession session) throws Exception {
-		// TODO Auto-generated method stub
 		long update_time = 0;
 		
 		System.out.println("session.getAttribute(update time +bno ) :: "+session.getAttribute("update_time_"+gno));

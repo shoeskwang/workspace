@@ -17,7 +17,7 @@ import org.springframework.web.servlet.ModelAndView;
 import com.kwang.forecastCourse.model.dto.BoardVO;
 import com.kwang.forecastCourse.service.BoardPager;
 import com.kwang.forecastCourse.service.BoardService;
-import com.kwang.forecastCourse.service.ReplyService;
+import com.kwang.forecastCourse.service.BoardReplyService;
 
 @Controller
 @RequestMapping("/board/*")
@@ -27,11 +27,11 @@ public class BoardController {
 	BoardService boardService;
 	
 	@Inject // ReplyService 주입(ReplyService의 댓글의 갯수를 구하는 메서드 호출하기 위해)
-    ReplyService replyService;
+	BoardReplyService boardReplyService;
 	
-	// 01. 게시글 목록
+	// 게시글 목록
     @RequestMapping("list.do")
- // @RequestParam(defaultValue="") ==> 기본값 할당
+    // @RequestParam(defaultValue="") ==> 기본값 할당
     public ModelAndView list(@RequestParam(defaultValue="title") String searchOption,
     						@RequestParam(defaultValue="") String keyword,
     						@RequestParam(defaultValue="1") int curPage) throws Exception{
@@ -63,7 +63,7 @@ public class BoardController {
         return mav; // list.jsp로 List가 전달된다.
     }
     
-    // 02_01. 게시글 작성화면
+    //  게시글 작성화면
     // @RequestMapping("board/write.do")
     // value="", method="전송방식"
     @RequestMapping(value="write.do", method=RequestMethod.GET)
@@ -71,7 +71,7 @@ public class BoardController {
         return "board/write"; // write.jsp로 이동
     }
 
-    // 02_02. 게시글 작성처리
+    //  게시글 작성처리
     @RequestMapping(value="insert.do", method=RequestMethod.POST)
     public String insert(@ModelAttribute BoardVO vo, HttpSession session) throws Exception{
     	// session에 저장된 userId를 writer에 저장
@@ -83,7 +83,7 @@ public class BoardController {
     }
 
     
-    // 03. 게시글 상세내용 조회, 게시글 조회수 증가 처리
+    // 게시글 상세내용 조회, 게시글 조회수 증가 처리
     // @RequestParam : get/post방식으로 전달된 변수 1개
     // HttpSession 세션객체
     @RequestMapping(value="view.do", method=RequestMethod.GET)
@@ -101,18 +101,18 @@ public class BoardController {
         map.put("searchOption", searchOption); // 검색옵션
         map.put("keyword", keyword); // 검색키워드
         map.put("curPage", curPage);
-        //map.put("count",replyService.count(bno));
+        //map.put("count",boardReplyService.count(bno));
         
         // 뷰의 이름
         mav.setViewName("board/view");
         // 뷰에 전달할 데이터
         mav.addObject("map", map); // 맵에 저장된 데이터를 mav에 저장
         mav.addObject("dto", boardService.read(bno));
-        //mav.addObject("count", replyService.count(bno));
+        //mav.addObject("count", boardReplyService.count(bno));
         return mav;
     }
     
-    // 04. 게시글 수정
+    // 게시글 수정
     // 폼에서 입력한 내용들은 @ModelAttribute BoardVO vo로 전달됨
     @RequestMapping(value="update.do", method=RequestMethod.POST)
     public String update(@ModelAttribute BoardVO vo) throws Exception{
@@ -124,7 +124,7 @@ public class BoardController {
     }
     
 
-    // 05. 게시글 삭제
+    // 게시글 삭제
     @RequestMapping("delete.do")
     public String delete(@RequestParam int bno) throws Exception{
         boardService.delete(bno);

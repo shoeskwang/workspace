@@ -21,7 +21,6 @@ public class MainServiceImpl implements MainService {
 	@Override
 	public Map<String, Object> getForecastInfo() throws Exception{
 		// TODO Auto-generated method stub
-		// Service 부분
     	
     	// 현재 날짜 및 시각 구하기
     	Calendar calendar = Calendar.getInstance();
@@ -30,10 +29,7 @@ public class MainServiceImpl implements MainService {
 		String date = dateFormat.format(calendar.getTime()).substring(0, 8);
 		String time = dateFormat.format(calendar.getTime()).substring(8);
 		
-//		System.out.println(date);
-//		System.out.println(time);
-		
-		// 검색 시간 조절
+		// 날씨 API에 적합하도록 검색 시간 조절
 		int t = Integer.parseInt(time);
 		if(t%100>30){
 			t=(t/100)*100;
@@ -65,7 +61,7 @@ public class MainServiceImpl implements MainService {
     	System.out.println("url : " + url);
     	String forecastRes = httpRequestService.getHttpRequest(url, key);
     	
-    	// Service 부분
+    	// API로부터 필요한 데이터 추출
     	JSONParser jsonParser = new JSONParser();
         JSONObject jsonObj = (JSONObject) jsonParser.parse(forecastRes);
         
@@ -116,11 +112,20 @@ public class MainServiceImpl implements MainService {
         	}
         }
         
-        System.out.println("LGT : " + LGT);
-        System.out.println("PTY : " + PTY);
-        System.out.println("RN1 : " + RN1);
-        System.out.println("SKY : " + SKY);
-        System.out.println("T1H : " + T1H);
+        /*
+         *  LGT : 낙뢰 ( 0=확률없음, 1=낮음, 2=보통, 3=높음)
+			PTY : 강수형태 (0=없음, 1=비, 2=비/눈 ,3=눈)
+			RN1 : 1시간 강수량 (mm)
+			SKY : 하늘상태 (1=맑음 , 2=구름조금, 3=구름많음, 4=흐림)
+			T1H : 온도(℃)
+         * */
+        /*
+         * System.out.println("LGT : " + LGT);
+	        System.out.println("PTY : " + PTY);
+	        System.out.println("RN1 : " + RN1);
+	        System.out.println("SKY : " + SKY);
+	        System.out.println("T1H : " + T1H);
+        */
         
         Map<String, Object> map = new HashMap<String, Object>();
         map.put("DATE", date);
@@ -135,19 +140,17 @@ public class MainServiceImpl implements MainService {
 
 	@Override
 	public Map<String, Object> getDustInfo() throws Exception{
-		// TODO Auto-generated method stub
 		// 미세먼지 데이터 호출
         String url = "http://openapi.seoul.go.kr:8088/4458664c7573686f34376949796d53/json/ForecastWarningMinuteParticleOfDustService/1/1/";
-    	//url = "http://openapi.airkorea.or.kr/openapi/services/rest/ArpltnInforInqireSvc/getCtprvnMesureLIst?itemCode=PM10&dataGubun=DAILY&searchCondition=MONTH&pageNo=1&numOfRows=10&ServiceKey=fjhxMg0Gy%2FrsTrwToZAddA3z7kHVV0N970UL2rxZDTNpgxxvkmP6EOE2zTFrCga1QqGHbNA%2FSKnmw87UlF0PfQ%3D%3D&_returnType=json";
     	String key = "4458664c7573686f34376949796d53";
-        //key = "fjhxMg0Gy%2FrsTrwToZAddA3z7kHVV0N970UL2rxZDTNpgxxvkmP6EOE2zTFrCga1QqGHbNA%2FSKnmw87UlF0PfQ%3D%3D";
     	
     	String dustRes = httpRequestService.getHttpRequest(url, key);
     	
-    	// dust 데이터 default 오류로 박고 시작
+    	// dust 데이터  비정상 처리되었을 때의 처리
     	String CAISTEP="오류";
         String ALARM_CNDT ="\"비정상 처리 되어 표시할 수 없습니다.\"";
         
+        // API에서 받은 JSON 데이터 중 필요한 데이터 추출
         JSONParser jsonParser = new JSONParser();
         JSONObject tempObj;
         
@@ -180,6 +183,12 @@ public class MainServiceImpl implements MainService {
     			}
     		}
     	}
+    	
+    	/*
+    	 * APPLC_DT : 발표시간
+    	 * CAISTEP : 예보 등급
+    	 * ALARM_CNDT : 행동요령(예보)
+    	 * */
     	
         Map<String, Object> dustMap = new HashMap<String, Object>();
         //dustMap.put("APPLC_DT", tempObj.get("APPLC_DT")); //시각 정보

@@ -26,6 +26,7 @@ public class BoardReplyController {
 	@RequestMapping("insert.do")
 	@ResponseBody
 	public HashMap<String, String> insert(@ModelAttribute BoardReplyVO vo, HttpSession session){
+		// 댓글 등록 처리
 		String userId = (String) session.getAttribute("userId");
 		vo.setReplyer(userId);
 		boardReplyService.create(vo);
@@ -42,8 +43,9 @@ public class BoardReplyController {
 	@RequestMapping("delete.do")
 	@ResponseBody
 	public HashMap<String, String> delete(@ModelAttribute BoardReplyVO vo, HttpSession session){
+		// 댓글 삭제 처리
 		//String userId = (String) session.getAttribute("userId");
-		System.out.println("ReplyController delete() rno = " + vo.getRno());
+		System.out.println("BoardReplyController delete() rno = " + vo.getRno());
 		//vo.setReplyer(userId);
 		boardReplyService.delete(vo.getRno());
 		
@@ -61,8 +63,7 @@ public class BoardReplyController {
 							@RequestParam(defaultValue="1") int curPage,
 							ModelAndView mav,
 							HttpSession session){
-		
-		//System.out.println("              ReplyController list() bno : " + bno);
+		// 게시판 댓글 리스트 처리
 		
 		// ** 페이징처리
 		int count = boardReplyService.count(bno);
@@ -71,6 +72,7 @@ public class BoardReplyController {
 			return mav;
 		}
 		
+		// 현재 댓글 페이지 
 		ReplyPager replyPager = new ReplyPager(count,curPage);
 		int start = replyPager.getPageBegin();
 		int end = replyPager.getPageEnd();

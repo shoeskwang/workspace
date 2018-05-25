@@ -38,16 +38,18 @@ public class MemberController {
 	// 로깅을 위한 변수
     private static final Logger logger = LoggerFactory.getLogger(MemberController.class);
     
+    //로그인
     @RequestMapping("login.do")
     public String login(){
     	return "member/login";
     }
-    
+    //회원가입 페이지 이동 처리
     @RequestMapping("join.do")
     public String join(){
     	return "member/join";
     }
     
+    //회원가입 처리
     @RequestMapping("insert.do")
     public String insert(@ModelAttribute MemberVO vo){
     	
@@ -58,6 +60,7 @@ public class MemberController {
     	
     }
     
+    // id 중복 체크
     @RequestMapping("idCheck.do")
     public void idCheckajax(@RequestParam(defaultValue="") String id,
     											HttpServletResponse response) throws Exception{
@@ -81,6 +84,7 @@ public class MemberController {
     	
     }
     
+    // 로그인 확인 처리
     @RequestMapping("loginCheck.do")
     public String loginCheck(@ModelAttribute MemberVO vo, HttpSession session){
     	boolean result = memberService.loginCheck(vo, session);
@@ -92,6 +96,7 @@ public class MemberController {
     	//return mav;
     }
     
+    // 로그인 실패 처리
     @RequestMapping("loginFail.do")
     public ModelAndView loginFail(){
     	ModelAndView mav = new ModelAndView();
@@ -102,6 +107,7 @@ public class MemberController {
 		return mav;
     }
     
+    // 로그가웃
     @RequestMapping("logout.do")
     public ModelAndView logout(HttpSession session){
     	memberService.logout(session);
@@ -111,10 +117,12 @@ public class MemberController {
     	return mav;
     }
     
+    // 마이페이지 처리
     @RequestMapping("mypage.do")
     public ModelAndView mypage(HttpSession session) throws Exception{
     	String userId = (String) session.getAttribute("userId");
     	
+    	// 해당 사용자가 작성한 경로, 게시글 리스트 호출 (최대 20개까지만)
     	List<GeoVO> glist = courseService.listAll(1, 20,"writer", userId);
     	List<BoardVO> blist = boardService.listAll(1,20,"writer", userId);
         

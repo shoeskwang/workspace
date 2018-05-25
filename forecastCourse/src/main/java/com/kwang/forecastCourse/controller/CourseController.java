@@ -31,10 +31,9 @@ public class CourseController {
 	@Inject
 	MainService mainService;
 	
+	// 경로 상세 뷰
 	@RequestMapping("view.do")
     public ModelAndView viewCourse(@RequestParam(defaultValue="1") int gno, HttpSession session) throws Exception{
-		
-		//GeoVO vo = courseService.view(gno);
 		// 조회수 증가 처리
 		courseService.increaseViewcnt(gno, session);
         
@@ -46,9 +45,10 @@ public class CourseController {
 		return mav;
 	}
 	
+	// 경로 등록
 	@RequestMapping(value="insert.do", method=RequestMethod.POST)
     public String insert(@ModelAttribute GeoVO vo, HttpSession session) throws Exception{
-		System.out.println("CourseController insert()");
+//		System.out.println("CourseController insert()");
 		String userId = (String) session.getAttribute("userId");
 		vo.setWriter(userId);
 		
@@ -57,11 +57,13 @@ public class CourseController {
 		return "redirect:list.do";
 	}
 	
+	// 경로 등록 페이지 이동 처리
 	@RequestMapping(value="write.do", method=RequestMethod.GET)
     public String write(){
         return "course/insert"; // insert.jsp로 이동
     }
 	
+	// 추천 경로 리스트 ( 날씨,미세먼지 정보 포함 )
 	@RequestMapping("list.do")
     public ModelAndView listAll(@RequestParam(defaultValue="1") int curPage) throws Exception{
 		// 레코드 갯수
@@ -87,7 +89,7 @@ public class CourseController {
 		return mav;
 	}
 	
-	// 04. 게시글 수정
+	//  경로 정보  수정
     // 폼에서 입력한 내용들은 @ModelAttribute BoardVO vo로 전달됨
     @RequestMapping(value="update.do", method=RequestMethod.POST)
     public String update(@ModelAttribute GeoVO vo) throws Exception{
@@ -97,7 +99,7 @@ public class CourseController {
         return "redirect:list.do";
     }
 
-    // 05. 게시글 삭제
+    //  경로 삭제
     @RequestMapping("delete.do")
     public String delete(@RequestParam int gno) throws Exception{
     	courseService.delete(gno);
