@@ -106,83 +106,104 @@
 <input id="execute2" type="button" value="미세먼지정보"> -->
 <!-- <input id="around" type="button" value="거리뷰" class="control-btn"> -->
 <script>
-/* 지도 초기위치 지정 */
-var mapOptions = {
-    center: new naver.maps.LatLng(37.5189375, 126.85354749999999),
-    mapTypeControl: true,
-    mapTypeControlOptions: {
-        style: naver.maps.MapTypeControlStyle.DROPDOWN
-    },
-    zoom: 10,
-    scaleControl: false,
-    logoControl: false,
-    mapDataControl: false,
-    zoomControl: true,
-    minZoom: 1
-};
+var latitude;
+var longitude;
+  if (navigator.geolocation) { // GPS를 지원하면
+	navigator.geolocation.getCurrentPosition(function(position) {
+	  latitude = position.coords.latitude;
+	  longitude = position.coords.longitude;
+	  
+	  console.log(position.coords.latitude + ' ' + position.coords.longitude);
+	  
+	  /* 지도 초기위치 지정 */
+		var mapOptions = {
+		    center: new naver.maps.LatLng(latitude, longitude),
+		    mapTypeControl: true,
+		    mapTypeControlOptions: {
+		        style: naver.maps.MapTypeControlStyle.DROPDOWN
+		    },
+		    zoom: 10,
+		    scaleControl: false,
+		    logoControl: false,
+		    mapDataControl: false,
+		    zoomControl: true,
+		    minZoom: 1
+		};
 
-var map = new naver.maps.Map('map', mapOptions);
+		var map = new naver.maps.Map('map', mapOptions);
 
 
-var drawingManager = new naver.maps.drawing.DrawingManager({
-    map: map,
-    drawingControl: [
-        naver.maps.drawing.DrawingMode.ARROWLINE
-    ],
-    /* rectangleOptions: {
-        fillColor: '#ff0000',
-        fillOpacity: 0.5,
-        strokeWeight: 3,
-        strokeColor: '#ff0000'
-    },
-    ellipseOptions: {
-        fillColor: '#ff25dc',
-        fillOpacity: 0.5,
-        strokeWeight: 3,
-        strokeColor: '#ff25dc'
-    }, */
-    /*
-    polylineOptions: {
-        strokeColor: '#222',
-        strokeWeight: 3,
-    },*/
-    arrowlineOptions: {
-        endIconSize: 16,
-        strokeWeight: 3
-    }
-    /* ,
-    polygonOptions: {
-        fillColor: '#ffc300',
-        fillOpacity: 0.5,
-        strokeWeight: 3,
-        strokeColor:'#ffc300'
-    } */
-});
+		var drawingManager = new naver.maps.drawing.DrawingManager({
+		    map: map,
+		    drawingControl: [
+		        naver.maps.drawing.DrawingMode.ARROWLINE
+		    ],
+		    /* rectangleOptions: {
+		        fillColor: '#ff0000',
+		        fillOpacity: 0.5,
+		        strokeWeight: 3,
+		        strokeColor: '#ff0000'
+		    },
+		    ellipseOptions: {
+		        fillColor: '#ff25dc',
+		        fillOpacity: 0.5,
+		        strokeWeight: 3,
+		        strokeColor: '#ff25dc'
+		    }, */
+		    /*
+		    polylineOptions: {
+		        strokeColor: '#222',
+		        strokeWeight: 3,
+		    },*/
+		    arrowlineOptions: {
+		        endIconSize: 16,
+		        strokeWeight: 3
+		    }
+		    /* ,
+		    polygonOptions: {
+		        fillColor: '#ffc300',
+		        fillOpacity: 0.5,
+		        strokeWeight: 3,
+		        strokeColor:'#ffc300'
+		    } */
+		},3000);
 
-//자전거도로 레이어 생성
-var bicycleLayer = new naver.maps.BicycleLayer();
-var btn = $('#bicycle');
+		//자전거도로 레이어 생성
+		var bicycleLayer = new naver.maps.BicycleLayer();
+		var btn = $('#bicycle');
 
-naver.maps.Event.addListener(map, 'bicycleLayer_changed', function(bicycleLayer) {
-    if (bicycleLayer) {
-        btn.addClass('control-on');
-    } else {
-        btn.removeClass('control-on');
-    }
-});
+		naver.maps.Event.addListener(map, 'bicycleLayer_changed', function(bicycleLayer) {
+		    if (bicycleLayer) {
+		        btn.addClass('control-on');
+		    } else {
+		        btn.removeClass('control-on');
+		    }
+		});
 
-// 자전거도로 레이어 설정
-bicycleLayer.setMap(map);
+		// 자전거도로 레이어 설정
+		bicycleLayer.setMap(map);
 
-$('#bicycle').on("click", function(e) {
-    e.preventDefault();
+		$('#bicycle').on("click", function(e) {
+		    e.preventDefault();
 
-    if (bicycleLayer.getMap()) {
-        bicycleLayer.setMap(null);
-    } else {
-        bicycleLayer.setMap(map);
-    }
-});
+		    if (bicycleLayer.getMap()) {
+		        bicycleLayer.setMap(null);
+		    } else {
+		        bicycleLayer.setMap(map);
+		    }
+		});
+	}, function(error) {
+	  console.error(error);
+	}, {
+	  enableHighAccuracy: false,
+	  maximumAge: 0,
+	  timeout: Infinity
+	});
+  } else {
+	alert('GPS를 지원하지 않습니다');
+  }
+
+	
 
 $("#navUl li").removeClass("current");
 $("#homeli").attr('class','current');
