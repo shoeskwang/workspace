@@ -12,6 +12,7 @@
 		<org.springframework-version>4.3.8.RELEASE</org.springframework-version>
 		<org.aspectj-version>1.6.10</org.aspectj-version>
 		<org.slf4j-version>1.6.6</org.slf4j-version>
+		<org.apache.tiles-version>3.0.5</org.apache.tiles-version>
 	</properties>
 	
 	<repositories>
@@ -102,6 +103,33 @@
             <artifactId>log4jdbc-log4j2-jdbc4</artifactId>
             <version>1.16</version>
         </dependency>
+
+		<!-- Tiles -->
+        <dependency>
+            <groupId>org.apache.tiles</groupId>
+            <artifactId>tiles-servlet</artifactId>
+            <version>${org.apache.tiles-version}</version>
+        </dependency>
+         <dependency>
+            <groupId>org.apache.tiles</groupId>
+            <artifactId>tiles-api</artifactId>
+            <version>${org.apache.tiles-version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.tiles</groupId>
+            <artifactId>tiles-jsp</artifactId>
+            <version>${org.apache.tiles-version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.tiles</groupId>
+            <artifactId>tiles-core</artifactId>
+            <version>${org.apache.tiles-version}</version>
+        </dependency> 
+        <dependency>
+            <groupId>org.apache.tiles</groupId>
+            <artifactId>tiles-template</artifactId>
+            <version>${org.apache.tiles-version}</version>
+        </dependency> 
 
 
 		<!-- logback �α� ���� -->

@@ -22,7 +22,6 @@
 
 </head>
 <body>
-<%@ include file="../include/menu.jsp" %>
 <div id="map" style="width:70%;height:800px;">
 	<ul class="measure-control">
 		<li><input id="bicycle" type="button" value="자전거 도로 표시" class="control-btn"></li>
@@ -46,7 +45,6 @@
 		<img src="<%=request.getContextPath()%>/images/adv.jpg" height="80%" width="80%" style="margin:10px;"/>
 </div>
 
-<%@ include file="../include/footer.jsp" %>
 <script>
 var mapOptions = {
     center: new naver.maps.LatLng(37.5189375, 126.85354749999999),

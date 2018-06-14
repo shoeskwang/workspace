@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE tiles-definitions PUBLIC
+       "-//Apache Software Foundation//DTD Tiles Configuration 3.0//EN"
+       "http://tiles.apache.org/dtds/tiles-config_3_0.dtd">
+ 
+<tiles-definitions>
+ 
+    <!-- (1) 레이아웃을 적용하지않는화면-->    
+    <definition name=".none" template="/WEB-INF/tileLayout/loginLayout.jsp">
+        <put-attribute name="title" value="" />
+        <put-attribute name="header" value="/WEB-INF/views/include/header.jsp" />
+        <put-attribute name="menu" value="" />        
+        <put-attribute name="footer" value="" />
+    </definition>
+ 
+    <!-- (2) 레이아웃을 적용하는화면-->
+    <definition name=".base" template="/WEB-INF/tileLayout/baseLayout.jsp">
+        <put-attribute name="title" value="" />
+        <put-attribute name="header" value="/WEB-INF/views/include/header.jsp" />
+        <put-attribute name="menu" value="/WEB-INF/views/include/menu.jsp" />        
+        <put-attribute name="footer" value="/WEB-INF/views/include/footer.jsp" />
+    </definition>
+    
+    <!-- (1) 레이아웃을 적용하지않는화면-->    
+    <definition name="member/*" extends=".none">
+      <put-attribute name="body" value="/WEB-INF/views/member/{1}.jsp" />
+    </definition>
+    
+    <definition name="*/replyList" extends=".none">
+      <put-attribute name="body" value="/WEB-INF/views/{1}/replyList.jsp" />
+    </definition>
+ 
+   <!-- (2) 레이아웃을 적용하는화면-->
+   <definition name="*/*" extends=".base">      
+      <put-attribute name="body" value="/WEB-INF/views/{1}/{2}.jsp" />
+    </definition>
+</tiles-definitions>

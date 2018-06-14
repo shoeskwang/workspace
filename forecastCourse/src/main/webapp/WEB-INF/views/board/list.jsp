@@ -26,7 +26,6 @@
 </script>
 </head>
 <body>
-<%@ include file="../include/menu.jsp" %>
 <div id="wrapper">
 <section class="wrapper style1 fullscreen">
 
@@ -142,7 +141,6 @@
 <div id="imgsection"  style="width:27%;height:500px; display:inline; position:fixed; top:300px; right:0px; z-index:999">
 		<img src="<%=request.getContextPath()%>/images/biker.jpg" height="80%" width="80%" style="margin:10px;"/>
 </div>
-<%@ include file="../include/footer.jsp" %>
 <script>
 $("#navUl li").removeClass("current");
 $("#boardli").attr('class','current');

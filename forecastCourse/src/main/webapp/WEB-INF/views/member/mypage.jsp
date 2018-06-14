@@ -14,7 +14,7 @@
 </script>
 </head>
 <body>
-<%@ include file="../include/menu.jsp" %>
+<%@ include file="../include/menu.jsp" %><!-- mypage에 경우 member 디렉토리를 사용하므로 include 제외안함. -->
 <div id="wrapper">
 <section class="wrapper style1 fullscreen">
 <div style="margin-left:20px">

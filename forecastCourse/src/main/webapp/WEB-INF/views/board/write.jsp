@@ -38,7 +38,6 @@
 </script>
 </head>
 <body>
-<%@ include file="../include/menu.jsp" %>
 <div id="wrapper">
 <section class="wrapper style1 fullscreen">
 	<h2>게시글 작성</h2>
@@ -66,7 +65,6 @@
 	</form>
 </section>
 </div>
-<%@ include file="../include/footer.jsp" %>
 <script>
 $("#navUl li").removeClass("current");
 $("#boardli").attr('class','current');

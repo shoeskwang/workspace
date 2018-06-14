@@ -21,7 +21,6 @@ function list(page){
     location.href="${path}/course/list.do?curPage="+page;
 }
 </script>
-<%@ include file="../include/menu.jsp" %>
 <div id="wrapper" style="margin-left:20px">
 	<div class="row">
 		<div class="8u 12u(mobile)">
@@ -146,7 +145,6 @@ function list(page){
 		</div>
 	</div>
 </div>
-<%@ include file="../include/footer.jsp" %>
 <script>
 $("#navUl li").removeClass("current");
 $("#courseli").attr('class','current');

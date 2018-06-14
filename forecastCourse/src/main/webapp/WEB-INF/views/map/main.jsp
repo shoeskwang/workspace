@@ -1,5 +1,4 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<!-- jstl 코어 태그 -->
 <!DOCTYPE html>
 <html>
 <head>
@@ -7,13 +6,14 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
 <title>Myway Home</title>
-<%@ include file="../include/header.jsp" %>
+<%@ include file="../include/header.jsp" %><!-- header의 경우 jstl이 적용이 안되어 tiles 적용 이후에도 유지  -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 <script type="text/javascript" src="https://openapi.map.naver.com/openapi/v3/maps.js?clientId=ZD0P2V80MJ57K5qoMKF8&submodules=panorama,geocoder,drawing,visualization"></script>
 <style type="text/css">
     ul.measure-control { position:absolute;z-index:100;top:15px;right:120px;margin:0;padding:0; }
     ul.measure-control li { list-style:none;float:left;display:block;padding-right:5px; }
     
+    /* 지도내에 버튼 스타일 */
     input[type="button"], input[type="submit"], input[type="reset"], button, .button {
 	    font-size: 0.8em;
 	    padding: 0.65em 1.5em 0.65em 1.5em;
@@ -21,7 +21,6 @@
 </style>
 </head>
 <body>
-<%@ include file="../include/menu.jsp" %>
 <!--  지도 사이즈 조절 -->
 <div id="map" style="width:70%;height:800px;">
 	<ul class="measure-control">
@@ -97,7 +96,6 @@
 
 
 
-<%@ include file="../include/footer.jsp" %>
 
 	
 <!-- <div id="pano" style="width:100%;height:800px;"></div> -->

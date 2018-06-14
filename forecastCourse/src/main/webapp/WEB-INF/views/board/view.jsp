@@ -160,7 +160,6 @@
 </script>
 </head>
 <body>
-<%@ include file="../include/menu.jsp" %>
 <div id="wrapper">
 <section class="wrapper style1 fullscreen">
 	<header>
@@ -218,7 +217,6 @@
 	    <div id="listReply"></div>
 </section>
 </div>
-<%@ include file="../include/footer.jsp" %>
 <script>
 $("#navUl li").removeClass("current");
 $("#boardli").attr('class','current');
