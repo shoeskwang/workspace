@@ -5,7 +5,7 @@
  
 <html>
 <head>
-<title>Explosion</title>
+<title>Myway</title>
 </head>
 <body>
      <tiles:insertAttribute name="header"/>        
