@@ -22,6 +22,10 @@
     </definition>
     
     <!-- (1) 레이아웃을 적용하지않는화면-->    
+    <definition name="member/*" extends=".none">
+      <put-attribute name="body" value="/WEB-INF/views/member/{1}.jsp" />
+    </definition>
+    
     <definition name="*/replyList" extends=".none">
       <put-attribute name="body" value="/WEB-INF/views/{1}/replyList.jsp" />
     </definition>

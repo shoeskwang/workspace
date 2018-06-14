@@ -41,6 +41,7 @@
 </script>
 </head>
 <body>
+<%@ include file="../include/menu.jsp" %>
 <div id="wrapper">
 <section class="wrapper style1 fullscreen">
 	<header>
@@ -76,6 +77,7 @@
 	    </form>
 </section>
 </div>
+<%@ include file="../include/footer.jsp" %>
 <script>
 $("#navUl li").removeClass("current");
 $("#loginli").attr('class','current');

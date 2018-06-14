@@ -99,6 +99,7 @@
 </script>
 </head>
 <body>
+<%@ include file="../include/menu.jsp" %>
 <div id="wrapper" style="margin-left:20px">
 <section class="wrapper style1 fullscreen">
 	<h2>회원가입</h2>
@@ -169,6 +170,7 @@
 	</form>
 </section>
 </div>
+<%@ include file="../include/footer.jsp" %>
 <script>
 $("#navUl li").removeClass("current");
 $("#loginli").attr('class','current');
