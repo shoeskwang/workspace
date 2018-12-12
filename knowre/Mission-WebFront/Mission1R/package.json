@@ -1,0 +1,13 @@
+{
+  "name": "knowre-interview-server-complete",
+  "description": "Complete server code for knowre interview",
+  "version": "0.1.0",
+  "private": true,
+  "dependencies": {
+    "async": "2.3.0",
+    "body-parser": "1.17.1",
+    "express": "4.15.2",
+    "sequelize": "3.30.4",
+    "sqlite3": "4.0.4"
+  }
+}
